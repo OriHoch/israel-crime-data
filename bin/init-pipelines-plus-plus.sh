@@ -21,7 +21,6 @@ if [ "${BASENAME}" != "datapackage-pipelines-plus-plus" ]; then
     copy bin/init-pipelines-plus-plus.sh
     copy bin/install.sh
     copy bin/start.sh
-    copy bin/update_compose.sh
     chmod +x bin/*.sh
 
     copy .env.example
@@ -31,8 +30,10 @@ if [ "${BASENAME}" != "datapackage-pipelines-plus-plus" ]; then
     copy plus_plus.source-spec.yaml
     copy plus_plus.source-spec.override.example.yaml
     copy requirements.txt
+    copy README.md
     echo "-e git+https://github.com/OriHoch/datapackage-pipelines-plus-plus.git#egg=datapackage_pipelines_plus_plus[develop]" >> requirements.txt
     if [ ! -f docker-compose.override.yml ]; then
+        # this is the only file we don't overwrite - because it's not committed to git
         cp docker-compose.override.example.yml docker-compose.override.yml
     fi
 fi
