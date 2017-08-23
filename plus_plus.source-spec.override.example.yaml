@@ -1,0 +1,7 @@
+traffic:
+  pipeline:
+    # disables any dump to sql / elasticsearch steps
+    - run: plus_plus.dump_to_sql
+      disable: true
+    - run: plus_plus.dump_to_elasticsearch
+      disable: true
