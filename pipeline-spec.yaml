@@ -104,13 +104,41 @@ traffic:
     - run: traffic_normalize
       parameters:
         resource: traffic-2012-2016-partial-2017-sheet-1
+        source_sheet: 1
     - run: traffic_normalize
       parameters:
         resource: traffic-2012-2016-partial-2017-sheet-2
+        source_sheet: 2
         only_schema: true
     - run: traffic_normalize
       parameters:
         resource: traffic-2012-2016-partial-2017-sheet-3
+        source_sheet: 3
+    - run: concatenate
+      parameters:
+        sources: 'traffic-2012-2016-partial-2017-sheet-[0-9]'
+        fields:
+          place_name: []
+          place_type: []
+          year_quarter: []
+          value: []
+          source_sheet: []
+        target:
+          name: traffic-2012-2016-partial-2017
+    - run: plus_plus.enumerate
+      parameters:
+        resource: traffic-2012-2016-partial-2017
+        primary-key: true
+        field: id
+    - run: plus_plus.dump_to_sql
+      parameters:
+        resource: traffic-2012-2016-partial-2017
+        table: ilcrime_traffic
+    - run: plus_plus.dump_to_elasticsearch
+      parameters:
+        resource: traffic-2012-2016-partial-2017
+        index-name: ilcrime_traffic
+        drop-index: true
     - run: dump.to_path
       parameters:
         out-path: ./data/traffic
