@@ -21,3 +21,22 @@ Not all sheets are processed, see the commented-out sheets in plus_plus.source-s
 
 The final data is normalized to a single table with `resource` column identifying the source XLS file / sheet number.
 
+As of time of writing, these are the XLS files and sheets available:
+
+![](https://github.com/OriHoch/israel-crime-data/raw/master/selected-crimes-local-authorities-2012-2015/.README_images/sheets_overview.png)
+
+So really we are left with only 1 sheet which is worth investigating further:
+
+## resource: 2a-large-sheet-2
+
+Offences are grouped by major stat_group and specific offences:
+
+![](https://github.com/OriHoch/israel-crime-data/raw/master/selected-crimes-local-authorities-2012-2015/.README_images/stat_group_offence.png)
+
+Place names and more specific region codes are available:
+
+![](https://github.com/OriHoch/israel-crime-data/raw/master/selected-crimes-local-authorities-2012-2015/.README_images/place_name_code.png)
+
+Each value is per year quarter:
+
+![](https://github.com/OriHoch/israel-crime-data/raw/master/selected-crimes-local-authorities-2012-2015/.README_images/year_quarter.png)

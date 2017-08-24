@@ -1,5 +1,6 @@
 {
-  "name": "selected_crimes_2012_2015",
+  "name": "israel_selected_crimes_2012_2015",
+  "description": "Collection of data about Israeli Police events by local authorities and collection of selected crimes for years 2012 - 2015",
   "resources": [
     {
       "dialect": {
