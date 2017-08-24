@@ -1,4 +1,7 @@
-traffic:
+# this file overrides all pipeline specs in any sub-directories
+# you have to match the relative pipeline id (in this case - load)
+
+load:
   pipeline:
     # disables any dump to sql / elasticsearch steps
     - run: plus_plus.dump_to_sql

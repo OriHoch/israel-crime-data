@@ -1,0 +1,62 @@
+{
+  "description": "Traffic violations data received from FOI requests. Contains data for years 2012-2016 and partial 2017.\n",
+  "name": "israel-traffic-violations-2012-2016-partial-2017",
+  "resources": [
+    {
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "encoding": "utf-8",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "traffic-2012-2016-partial-2017",
+      "path": "data/traffic-2012-2016-partial-2017.csv",
+      "schema": {
+        "fields": [
+          {
+            "es:type": "keyword",
+            "name": "place_name",
+            "type": "string"
+          },
+          {
+            "es:type": "keyword",
+            "name": "place_type",
+            "type": "string"
+          },
+          {
+            "es:type": "keyword",
+            "name": "year_quarter",
+            "type": "string"
+          },
+          {
+            "decimalChar": ".",
+            "groupChar": "",
+            "name": "value",
+            "type": "number"
+          },
+          {
+            "name": "source_sheet",
+            "type": "integer"
+          },
+          {
+            "name": "id",
+            "type": "integer"
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "./sources/traffic-2012-2016-partial-2017.xls",
+      "web": "https://www.odata.org.il/dataset/36f85402-fed3-4386-9963-a5270abebe40/resource/101f35d5-547f-4a6f-bdba-0b15771c3a63/download/-2012-2017-.xls"
+    }
+  ]
+}

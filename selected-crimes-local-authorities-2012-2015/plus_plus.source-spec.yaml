@@ -1,0 +1,272 @@
+dump_to_path:
+  pipeline:
+    - run: add_metadata
+      parameters:
+        name: selected_crimes_2012_2015
+        sources:
+          - name: 1b-small
+            path: ./sources/selected-crimes-local-authorities-2012-2015-1b-small.xls
+            web: https://www.odata.org.il/dataset/fa4eecb8-df84-4d49-bf9b-496e493e474b/resource/f9457ee6-ae63-412c-8d64-bd3d2d4cc941/download/-1-9-2012-2015.xls
+          - name: 2a-large
+            path: ./sources/selected-crimes-local-authorities-2012-2015-2a-large.xls
+            web: https://www.odata.org.il/dataset/fa4eecb8-df84-4d49-bf9b-496e493e474b/resource/37b52fdb-57cb-43d6-8feb-5a66257611e7/download/-2-2012-2015-.rar
+          - name: 2a-small
+            path: ./sources/selected-crimes-local-authorities-2012-2015-2a-small.xls
+            web: https://www.odata.org.il/dataset/fa4eecb8-df84-4d49-bf9b-496e493e474b/resource/54fd96a2-c13c-4bdd-b467-c5eb6a365e4d/download/-2-2012-2015-.xls
+          - name: 2b-large
+            path: ./sources/selected-crimes-local-authorities-2012-2015-2b-large.xls
+            web: https://www.odata.org.il/dataset/fa4eecb8-df84-4d49-bf9b-496e493e474b/resource/resource/0effc0fd-f4cf-4a6a-ac12-5f41b8fe1d83/download/-2-2012-2015.xls
+#    - run: ..autoload
+#      parameters:
+#        out-path: ./
+#        max-header-rows: 10
+
+     # this xls has slightly different columns
+     # need to check how to concatente it with the other sources
+     # TODO: investigate and uncomment
+#    - run: add_resource
+#      parameters:
+#        name: 1b-small-sheet-1
+#        source-sheet-name: Sheet1
+#        url: ./sources/selected-crimes-local-authorities-2012-2015-1b-small.xls
+#        format: xls
+#        skip_rows: 3
+#        sheet: 1
+#        headers:
+#        - place_name
+#        - stat_group
+#        - total
+#        - 2015_total
+#        - 2015_q1
+#        - 2015_q2
+#        - 2015_q3
+#        - 2015_q4
+#        - 2014_total
+#        - 2014_q1
+#        - 2014_q2
+#        - 2014_q3
+#        - 2014_q4
+#        - 2013_total
+#        - 2013_q1
+#        - 2013_q2
+#        - 2013_q3
+#        - 2013_q4
+#        - 2012_total
+#        - 2012_q1
+#        - 2012_q2
+#        - 2012_q3
+#        - 2012_q4
+
+     # sheet requires too much work to load and analyze, seems to duplicate data from other sheets
+     # TODO: investigate this sheet
+#    - run: add_resource
+#      parameters:
+#        name: 2a-large-sheet-1
+#        source-sheet-name: Sheet2
+#        url: ./sources/selected-crimes-local-authorities-2012-2015-2a-large.xls
+#        format: xls
+#        skip_rows: 5
+#        sheet: 1
+#        headers:
+
+    - run: add_resource
+      parameters:
+        name: 2a-large-sheet-2
+        source-sheet-name: Sheet1
+        url: ./sources/selected-crimes-local-authorities-2012-2015-2a-large.xls
+        format: xls
+        skip_rows: 4
+        sheet: 2
+        headers:
+        - place_name
+        - stat_region_code
+        - stat_group
+        - stat_offence
+        - null
+        - total
+        - 2015_total
+        - 2015_q1
+        - 2015_q2
+        - 2015_q3
+        - 2015_q4
+        - 2014_total
+        - 2014_q1
+        - 2014_q2
+        - 2014_q3
+        - 2014_q4
+        - 2013_total
+        - 2013_q1
+        - 2013_q2
+        - 2013_q3
+        - 2013_q4
+        - 2012_total
+        - 2012_q1
+        - 2012_q2
+        - 2012_q3
+        - 2012_q4
+    - run: add_resource
+      parameters:
+        name: 2a-large-sheet-3
+        source-sheet-name: גיליון1
+        url: ./sources/selected-crimes-local-authorities-2012-2015-2a-large.xls
+        format: xls
+        skip_rows: 2
+        sheet: 3
+        headers:
+        - place_name
+        - stat_region_code
+        - stat_group
+        - stat_offence
+        - null
+        - total
+        - 2015_total
+        - 2015_q1
+        - 2015_q2
+        - 2015_q3
+        - 2015_q4
+        - 2014_total
+        - 2014_q1
+        - 2014_q2
+        - 2014_q3
+        - 2014_q4
+        - 2013_total
+        - 2013_q1
+        - 2013_q2
+        - 2013_q3
+        - 2013_q4
+        - 2012_total
+        - 2012_q1
+        - 2012_q2
+        - 2012_q3
+        - 2012_q4
+
+     # sheet requires too much work to load and analyze, seems to duplicate data from other sheets
+     # TODO: investigate this sheet
+#    - run: add_resource
+#      parameters:
+#        name: 2a-small-sheet-1
+#        source-sheet-name: Sheet2
+#        url: ./sources/selected-crimes-local-authorities-2012-2015-2a-small.xls
+#        format: xls
+#        skip_rows: 1
+#        sheet: 1
+
+    - run: add_resource
+      parameters:
+        name: 2a-small-sheet-2
+        source-sheet-name: Sheet1
+        url: ./sources/selected-crimes-local-authorities-2012-2015-2a-small.xls
+        format: xls
+        skip_rows: 4
+        sheet: 2
+        headers:
+        - place_name
+        - stat_region_code
+        - stat_group
+        - stat_offence
+        - null
+        - total
+        - 2015_total
+        - 2015_q1
+        - 2015_q2
+        - 2015_q3
+        - 2015_q4
+        - 2014_total
+        - 2014_q1
+        - 2014_q2
+        - 2014_q3
+        - 2014_q4
+        - 2013_total
+        - 2013_q1
+        - 2013_q2
+        - 2013_q3
+        - 2013_q4
+        - 2012_total
+        - 2012_q1
+        - 2012_q2
+        - 2012_q3
+        - 2012_q4
+    - run: add_resource
+      parameters:
+        name: 2b-large-sheet-1
+        source-sheet-name: Sheet1
+        url: ./sources/selected-crimes-local-authorities-2012-2015-2b-large.xls
+        format: xls
+        skip_rows: 3
+        sheet: 1
+        headers:
+        - place_name
+        - stat_region_code
+        - stat_group
+        - stat_offence
+        - null
+        - total
+        - 2015_total
+        - 2015_q1
+        - 2015_q2
+        - 2015_q3
+        - 2015_q4
+        - 2014_total
+        - 2014_q1
+        - 2014_q2
+        - 2014_q3
+        - 2014_q4
+        - 2013_total
+        - 2013_q1
+        - 2013_q2
+        - 2013_q3
+        - 2013_q4
+        - 2012_total
+        - 2012_q1
+        - 2012_q2
+        - 2012_q3
+        - 2012_q4
+    - run: stream_remote_resources
+    - run: normalize
+      parameters:
+        resource: 2a-large-sheet-2
+    - run: normalize
+      parameters:
+        resource: 2a-large-sheet-3
+    - run: normalize
+      parameters:
+        resource: 2a-small-sheet-2
+    - run: normalize
+      parameters:
+        resource: 2b-large-sheet-1
+    - run: concatenate
+      parameters:
+        sources: '2[ab]-(small|large)-sheet-[123]'
+        fields:
+          resource: []
+          place_name: []
+          stat_region_code: []
+          stat_group: []
+          stat_offence: []
+          year_quarter: []
+          value: []
+        target:
+          name: selected_crimes_2012_2015
+    - run: plus_plus.enumerate
+      parameters:
+        resource: selected_crimes_2012_2015
+        primary-key: true
+        field: id
+    - run: dump.to_path
+      parameters:
+        out-path: ./
+    - run: ..humanify_datapackage
+      parameters:
+        out-path: ./
+
+dump_to_elasticsearch:
+  pipeline:
+    - run: load_resource
+      parameters:
+        url: ./datapackage.json
+        resource: selected_crimes_2012_2015
+    - run: plus_plus.dump_to_elasticsearch
+      parameters:
+        resource: selected_crimes_2012_2015
+        index-name: selected_crimes_2012_2015
+        drop-index: true
