@@ -1,147 +1,154 @@
-load:
+#dump_to_path:
+#  pipeline:
+#    - run: add_metadata
+#      parameters:
+#        name: israel-traffic-violations-2012-2016-partial-2017
+#        description: >
+#          Traffic violations data received from FOI requests.
+#          Contains data for years 2012-2016 and partial 2017.
+#        sources:
+#          - web: https://www.odata.org.il/dataset/36f85402-fed3-4386-9963-a5270abebe40/resource/101f35d5-547f-4a6f-bdba-0b15771c3a63/download/-2012-2017-.xls
+#            path: ./sources/traffic-2012-2016-partial-2017.xls
+#    - run: add_resource
+#      parameters:
+#        name: traffic-2012-2016-partial-2017-sheet-1
+#        url: "./sources/traffic-2012-2016-partial-2017.xls"
+#        format: xls
+#        skip_rows: 5
+#        sheet: 1
+#        headers:
+#          - place_name
+#          - place_type
+#          - 2012_q1
+#          - 2012_q2
+#          - 2012_q3
+#          - 2012_q4
+#          - 2012_total
+#          - 2013_q1
+#          - 2013_q2
+#          - 2013_q3
+#          - 2013_q4
+#          - 2013_total
+#          - 2014_q1
+#          - 2014_q2
+#          - 2014_q3
+#          - 2014_q4
+#          - 2014_total
+#          - 2015_q1
+#          - 2015_q2
+#          - 2015_q3
+#          - 2015_q4
+#          - 2015_total
+#          - 2016_q1
+#          - 2016_q2
+#          - 2016_q3
+#          - 2016_q4
+#          - 2016_total
+#          - 2017_q1
+#          - 2017_q2
+#          - 2017_total
+#          - total
+#    - run: add_resource
+#      parameters:
+#        name: traffic-2012-2016-partial-2017-sheet-2
+#        url: "./sources/traffic-2012-2016-partial-2017.xls"
+#        format: xls
+#        skip_rows: 1
+#        sheet: 2
+#        headers:
+#          - place_name
+#          - place_type
+#          - year
+#          - quarter
+#          - value
+#    - run: add_resource
+#      parameters:
+#        name: traffic-2012-2016-partial-2017-sheet-3
+#        url: "./sources/traffic-2012-2016-partial-2017.xls"
+#        format: xls
+#        skip_rows: 5
+#        sheet: 3
+#        headers:
+#          - place_name
+#          - place_type
+#          - 2012_q1
+#          - 2012_q2
+#          - 2012_q3
+#          - 2012_q4
+#          - 2012_total
+#          - 2013_q1
+#          - 2013_q2
+#          - 2013_q3
+#          - 2013_q4
+#          - 2013_total
+#          - 2014_q1
+#          - 2014_q2
+#          - 2014_q3
+#          - 2014_q4
+#          - 2014_total
+#          - 2015_q1
+#          - 2015_q2
+#          - 2015_q3
+#          - 2015_q4
+#          - 2015_total
+#          - 2016_q1
+#          - 2016_q2
+#          - 2016_q3
+#          - 2016_q4
+#          - 2016_total
+#          - 2017_q1
+#          - 2017_q2
+#          - 2017_total
+#          - total
+#    - run: stream_remote_resources
+#    - run: normalize
+#      parameters:
+#        resource: traffic-2012-2016-partial-2017-sheet-1
+#        source_sheet: 1
+#    - run: normalize
+#      parameters:
+#        resource: traffic-2012-2016-partial-2017-sheet-2
+#        source_sheet: 2
+#        only_schema: true
+#    - run: normalize
+#      parameters:
+#        resource: traffic-2012-2016-partial-2017-sheet-3
+#        source_sheet: 3
+#    - run: concatenate
+#      parameters:
+#        sources: 'traffic-2012-2016-partial-2017-sheet-[0-9]'
+#        fields:
+#          place_name: []
+#          place_type: []
+#          year_quarter: []
+#          value: []
+#          source_sheet: []
+#        target:
+#          name: traffic-2012-2016-partial-2017
+#    - run: plus_plus.enumerate
+#      parameters:
+#        resource: traffic-2012-2016-partial-2017
+#        primary-key: true
+#        field: id
+#    - run: dump.to_path
+#      parameters:
+#        out-path: ./
+#    - run: ..humanify_datapackage
+#      parameters:
+#        out-path: ./
+
+
+dump_to_elasticsearch:
+#  the data from dump_to_path is committed to the repository, no need to recreate it unless you made a change to the load process
+#  dependencies:
+#    - pipeline: ./traffic-2012-2016-partial-2017/dump_to_path
   pipeline:
-    - run: add_metadata
+    - run: load_resource
       parameters:
-        name: israel-traffic-violations-2012-2016-partial-2017
-        description: >
-          Traffic violations data received from FOI requests.
-          Contains data for years 2012-2016 and partial 2017.
-        sources:
-          - web: https://www.odata.org.il/dataset/36f85402-fed3-4386-9963-a5270abebe40/resource/101f35d5-547f-4a6f-bdba-0b15771c3a63/download/-2012-2017-.xls
-            path: ./sources/traffic-2012-2016-partial-2017.xls
-    - run: add_resource
-      parameters:
-        name: traffic-2012-2016-partial-2017-sheet-1
-        url: "./sources/traffic-2012-2016-partial-2017.xls"
-        format: xls
-        skip_rows: 5
-        sheet: 1
-        headers:
-          - place_name
-          - place_type
-          - 2012_q1
-          - 2012_q2
-          - 2012_q3
-          - 2012_q4
-          - 2012_total
-          - 2013_q1
-          - 2013_q2
-          - 2013_q3
-          - 2013_q4
-          - 2013_total
-          - 2014_q1
-          - 2014_q2
-          - 2014_q3
-          - 2014_q4
-          - 2014_total
-          - 2015_q1
-          - 2015_q2
-          - 2015_q3
-          - 2015_q4
-          - 2015_total
-          - 2016_q1
-          - 2016_q2
-          - 2016_q3
-          - 2016_q4
-          - 2016_total
-          - 2017_q1
-          - 2017_q2
-          - 2017_total
-          - total
-    - run: add_resource
-      parameters:
-        name: traffic-2012-2016-partial-2017-sheet-2
-        url: "./sources/traffic-2012-2016-partial-2017.xls"
-        format: xls
-        skip_rows: 1
-        sheet: 2
-        headers:
-          - place_name
-          - place_type
-          - year
-          - quarter
-          - value
-    - run: add_resource
-      parameters:
-        name: traffic-2012-2016-partial-2017-sheet-3
-        url: "./sources/traffic-2012-2016-partial-2017.xls"
-        format: xls
-        skip_rows: 5
-        sheet: 3
-        headers:
-          - place_name
-          - place_type
-          - 2012_q1
-          - 2012_q2
-          - 2012_q3
-          - 2012_q4
-          - 2012_total
-          - 2013_q1
-          - 2013_q2
-          - 2013_q3
-          - 2013_q4
-          - 2013_total
-          - 2014_q1
-          - 2014_q2
-          - 2014_q3
-          - 2014_q4
-          - 2014_total
-          - 2015_q1
-          - 2015_q2
-          - 2015_q3
-          - 2015_q4
-          - 2015_total
-          - 2016_q1
-          - 2016_q2
-          - 2016_q3
-          - 2016_q4
-          - 2016_total
-          - 2017_q1
-          - 2017_q2
-          - 2017_total
-          - total
-    - run: stream_remote_resources
-    - run: normalize
-      parameters:
-        resource: traffic-2012-2016-partial-2017-sheet-1
-        source_sheet: 1
-    - run: normalize
-      parameters:
-        resource: traffic-2012-2016-partial-2017-sheet-2
-        source_sheet: 2
-        only_schema: true
-    - run: normalize
-      parameters:
-        resource: traffic-2012-2016-partial-2017-sheet-3
-        source_sheet: 3
-    - run: concatenate
-      parameters:
-        sources: 'traffic-2012-2016-partial-2017-sheet-[0-9]'
-        fields:
-          place_name: []
-          place_type: []
-          year_quarter: []
-          value: []
-          source_sheet: []
-        target:
-          name: traffic-2012-2016-partial-2017
-    - run: plus_plus.enumerate
-      parameters:
+        url: ./datapackage.json
         resource: traffic-2012-2016-partial-2017
-        primary-key: true
-        field: id
-    - run: plus_plus.dump_to_sql
-      parameters:
-        resource: traffic-2012-2016-partial-2017
-        table: ilcrime_traffic
     - run: plus_plus.dump_to_elasticsearch
       parameters:
         resource: traffic-2012-2016-partial-2017
-        index-name: ilcrime_traffic
+        index-name: traffic_2012_2016_partial_2017
         drop-index: true
-    - run: dump.to_path
-      parameters:
-        out-path: ./
-    - run: ..humanify_datapackage
-      parameters:
-        out-path: ./
