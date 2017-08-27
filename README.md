@@ -5,9 +5,8 @@ Collection of data about crime in Israel
 
 ## Available data
 
-* traffic violations
-  * https://datahub.io/OriHoch/israel_traffic_violations
-  * https://github.com/OriHoch/israel-crime-data/tree/master/data/traffic
+* [Traffic violations 2012-2016 and partial 2017](https://github.com/OriHoch/israel-crime-data/tree/master/traffic-2012-2016-partial-2017)
+* [Police events - detailed data including localities and crime types - 2012-2015](https://github.com/OriHoch/israel-crime-data/tree/master/selected-crimes-local-authorities-2012-2015)
 
 
 ## Usage
