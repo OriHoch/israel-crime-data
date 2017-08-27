@@ -4,6 +4,8 @@ Traffic violations data received from FOI requests.
 
 Contains data for years 2012-2016 and partial 2017.
 
+Data source: https://www.odata.org.il/dataset/tnua
+
 ## Overview
 
 Data is duplicated in 3 Excel sheets:
