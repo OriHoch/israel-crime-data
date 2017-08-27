@@ -2,6 +2,15 @@
 
 Collection of data about crime in Israel
 
+Data is processed and loaded to different output points, depending on the data.
+
+Some of the data is available directly on GitHub, while some data is only available using the required server (PostgreSQL DB / Elasticsearch).
+
+Each datapackage will usually contain the following local data which you can download and use directly:
+
+* CSV files - contains processed and normalized tabular data, available under each datapackage's `data/` directory
+* Datapackage descriptor file - `datapackage.json` - contains a json schema descriptor of the datapackage contents. Follows the [frictionless data](http://frictionlessdata.io/) specs - so might be used with compatible tools.
+
 
 ## Available data
 
